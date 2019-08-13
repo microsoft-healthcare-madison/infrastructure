@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-proxy
+  namespace: subscriptions-ri
+  labels:
+    app: server-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server-proxy
+  template:
+    metadata:
+      labels:
+        app: server-proxy
+    spec:
+      containers:
+      - name: server-proxy
+        image: argonautcontainerregistry.azurecr.io/subscriptions/server-proxy:latest
+        env:
+        - name: Server_Public_Url
+          value: "http://server.subscriptions.argo.run"
+        - name: Server_FHIR_Url
+          value: "http://hapi.fhir.org/"
+        ports:
+        - containerPort: 56340

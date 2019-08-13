@@ -12,6 +12,8 @@ spec:
   - hosts:
     - argo-subscriptions.eastus.cloudapp.azure.com
     - subscriptions.argo.run
+    - server.subscriptions.argo.run
+    - client.subscriptions.argo.run
     - ui.subscriptions.argo.run
     secretName: tls-secret
   rules:
@@ -27,5 +29,12 @@ spec:
       paths:
       - backend:
           serviceName: ui
+          servicePort: 80
+        path: /(.*)
+  - host: server.subscriptions.argo.run
+    http:
+      paths:
+      - backend:
+          serviceName: server-proxy
           servicePort: 80
         path: /(.*)
