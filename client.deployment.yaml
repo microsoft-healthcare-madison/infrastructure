@@ -19,9 +19,5 @@ spec:
       - name: client
         image: argonautcontainerregistry.azurecr.io/subscriptions/client:latest
         env:
-        - name: Server_Public_Url
-          value: "http://server.subscriptions.argo.run"
-        - name: Server_FHIR_Url
-          value: "http://hapi.fhir.org/"
         ports:
-        - containerPort: 56340
+        - containerPort: 56345
