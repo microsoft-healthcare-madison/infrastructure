@@ -38,3 +38,10 @@ spec:
           serviceName: server-proxy
           servicePort: 80
         path: /(.*)
+  - host: client.subscriptions.argo.run
+    http:
+      paths:
+      - backend:
+          serviceName: client
+          servicePort: 80
+        path: /(.*)
