@@ -18,10 +18,8 @@ spec:
       containers:
       - name: server-proxy
         image: argonautcontainerregistry.azurecr.io/subscriptions/server-proxy:latest
-        env:
-        - name: Server_Public_Url
-          value: "http://server.subscriptions.argo.run"
-        - name: Server_FHIR_Url
-          value: "http://hapi.fhir.org/"
+        envFrom:
+        - configMapRef:
+            name: special-config
         ports:
         - containerPort: 56340

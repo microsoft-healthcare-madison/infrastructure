@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: special-config
+  namespace: subscriptions-ri
+data:
+  Server_Internal_Url:  http://0.0.0.0:56340
+  Server_Public_Url:  https://server.subscriptions.argo.run
+  Server_FHIR_Url:  http://hapi.fhir.org/
+  Client_Internal_Url:  http://0.0.0.0:56345
+  Client_Public_Url:  https://client.subscriptions.argo.run
+  Client_UI_Source_Path:  /usr/share/nginx/html
+  UI_Public_Url:  https://subscriptions.argo.run

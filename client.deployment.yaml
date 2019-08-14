@@ -18,8 +18,10 @@ spec:
       containers:
       - name: client
         image: argonautcontainerregistry.azurecr.io/subscriptions/client:latest
-        env:
-        - name: Client_Listen_Url
-          value: http://0.0.0.0:56345
+        envFrom:
+        - configMapRef:
+            name: special-config
+        # - name: Client_Listen_Url
+        #   value: http://0.0.0.0:56345
         ports:
         - containerPort: 56345
