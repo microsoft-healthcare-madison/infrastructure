@@ -21,5 +21,16 @@ spec:
         envFrom:
         - configMapRef:
             name: special-config
+        env:
+        - name: Sendpulse_User_Id
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Sendpulse_User_Id
+        - name: Sendpulse_Secret
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Sendpulse_Secret
         ports:
         - containerPort: 56340
