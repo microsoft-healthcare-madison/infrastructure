@@ -32,5 +32,10 @@ spec:
             secretKeyRef:
               name: argonaut-secrets
               key: Sendpulse_Secret
+        - name: Sendpulse_Sender
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Sendpulse_Sender
         ports:
         - containerPort: 56340
