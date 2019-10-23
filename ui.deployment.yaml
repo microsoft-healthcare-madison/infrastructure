@@ -18,7 +18,6 @@ spec:
       volumes:
       - name: shared-data
         emptyDir: {}
-
       containers:
       - name: ui
         image: argonautcontainerregistry.azurecr.io/subscriptions/ui:latest
@@ -29,10 +28,6 @@ spec:
         envFrom:
         - configMapRef:
             name: special-config
-        # - name: Server_Public_Url
-        #   value: "https://server.subscriptions.argo.run"
-        # - name: Client_Public_Url
-        #   value: "https://client.subscriptions.argo.run"
         ports:
         - containerPort: 80
       initContainers:
@@ -44,4 +39,4 @@ spec:
         envFrom:
         - configMapRef:
             name: special-config
-        command: ['sh', '-c', 'echo "window._env={\"Server_Public_Url\":\"$Server_Public_Url\", \"Client_Public_Url\":\"$Client_Public_Url\"}" > /shared-data/env.js']
+        command: ['sh', '-c', 'echo "window._env={\"INSTRUMENTATION_KEY\":\"$INSTRUMENTATION_KEY\", \"Server_Public_Url\":\"$Server_Public_Url\", \"Client_Public_Url\":\"$Client_Public_Url\"}" > /shared-data/env.js']
