@@ -7,6 +7,8 @@ data:
   Server_Internal_Url:  http://0.0.0.0:56340
   Server_Public_Url:  https://server.subscriptions.argo.run
   Server_FHIR_Url:  http://hapi.fhir.org/baseR4/
+  Server_FHIR_Url_R4:  http://hapi.fhir.org/baseR4/
+  Server_FHIR_Url_R5:  http://hapi.fhir.org/baseR5/
   Client_Internal_Url:  http://0.0.0.0:56345
   Client_Public_Url:  https://client.subscriptions.argo.run
   Client_UI_Source_Path:  /usr/share/nginx/html
