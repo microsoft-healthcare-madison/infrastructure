@@ -39,4 +39,4 @@ spec:
         envFrom:
         - configMapRef:
             name: special-config
-        command: ['sh', '-c', 'echo "window._env={\"INSTRUMENTATION_KEY\":\"$INSTRUMENTATION_KEY\", \"Server_Public_Url\":\"$Server_Public_Url\", \"Client_Public_Url\":\"$Client_Public_Url\"}" > /shared-data/env.js']
+        command: ['sh', '-c', 'echo "window._env={\"INSTRUMENTATION_KEY\":\"$INSTRUMENTATION_KEY\", \"Server_Public_Url\":\"$Server_Public_Url\", \"Server_Public_Url_R4\":\"$Server_Public_Url_R4\", \"Server_Public_Url_R5\":\"$Server_Public_Url_R5\", \"Client_Public_Url\":\"$Client_Public_Url\"}" > /shared-data/env.js']
