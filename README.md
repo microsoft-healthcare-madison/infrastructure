@@ -4,8 +4,8 @@ Home for controlled versions of documents used in the Madison Healthcare sandbox
 ## Original information
 
 Initial resources were created using the following guides:
+- https://docs.microsoft.com/en-us/azure/aks/ingress-static-ip
 - https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm#create-a-service-account
-- https://docs.microsoft.com/en-us/azure/aks/ingress-tls
 
 ```
 BAD:
