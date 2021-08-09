@@ -8,9 +8,9 @@ data:
   Server_Public_Url:  https://server.subscriptions.argo.run
   Server_Public_Url_R4:  https://server.subscriptions.argo.run/r4
   Server_Public_Url_R5:  https://server.subscriptions.argo.run/r5
-  Server_FHIR_Url:  http://hapi.fhir.org/baseR4/
-  Server_FHIR_Url_R4:  http://hapi.fhir.org/baseR4/
-  Server_FHIR_Url_R5:  http://hapi.fhir.org/baseR5/
+  Server_FHIR_Url:  http://hapi4.subscriptions.argo.run/fhir/
+  Server_FHIR_Url_R4:  http://hapi4.subscriptions.argo.run/fhir/
+  Server_FHIR_Url_R5:  http://hapi5.subscriptions.argo.run/fhir/
   Client_Internal_Url:  http://0.0.0.0:56345
   Client_Public_Url:  https://client.subscriptions.argo.run
   Client_UI_Source_Path:  /usr/share/nginx/html

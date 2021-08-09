@@ -13,6 +13,8 @@ spec:
     - server.subscriptions.argo.run
     - client.subscriptions.argo.run
     - ui.subscriptions.argo.run
+    - hapi4.subscriptions.argo.run
+    - hapi5.subscriptions.argo.run
     secretName: tls-secret
   rules:
   - host: ui.subscriptions.argo.run
@@ -51,6 +53,26 @@ spec:
       - backend:
           service:
             name: client
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: hapi4.subscriptions.argo.run
+    http:
+      paths:
+      - backend:
+          service:
+            name: hapi-r4
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: hapi5.subscriptions.argo.run
+    http:
+      paths:
+      - backend:
+          service:
+            name: hapi-r5
             port:
               number: 80
         path: /
