@@ -37,5 +37,17 @@ spec:
             secretKeyRef:
               name: argonaut-secrets
               key: Sendpulse_Sender
+        - name: Zulip_Email
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Zulip_Email
+        - name: Zulip_Key
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Zulip_Key
+        - name: Zulip_Site
+          value: "https://chat.fhir.org"
         ports:
         - containerPort: 56340
