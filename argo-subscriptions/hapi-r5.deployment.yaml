@@ -21,5 +21,7 @@ spec:
         env:
         - name: hapi.fhir.fhir_version
           value: "R5"
+        - name: hapi.fhir.server_address
+          value: "https://server.subscriptions.argo.run/r5/"
         ports:
         - containerPort: 8080
