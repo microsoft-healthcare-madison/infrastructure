@@ -3,7 +3,7 @@ Home for controlled versions of documents used in the Madison Healthcare sandbox
 
 # Provision AKS cluster
 
-Parameters for ARM deployment at `cluster-arm-template/`(./cluster-arm-template/).
+Parameters for ARM deployment at [`cluster-arm-template/`](./cluster-arm-template/).
 
 # Configure nginx ingress
 
