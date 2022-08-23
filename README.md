@@ -3,8 +3,7 @@ Home for controlled versions of documents used in the Madison Healthcare sandbox
 
 # Provision AKS cluster
 
-* K8s RBAC
-* Service Principal per https://github.com/marketplace/actions/azure-login#configure-a-service-principal-with-a-secret
+Parameters for ARM deployment at `cluster-arm-template/`(./cluster-arm-template/).
 
 # Configure nginx ingress
 
@@ -44,3 +43,7 @@ PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ip
 az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
 az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
 ```
+
+# Set up Service Principal for GH Actions deploymnets
+
+Based on: https://github.com/marketplace/actions/azure-login#configure-a-service-principal-with-a-secret

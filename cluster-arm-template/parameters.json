@@ -1,0 +1,57 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceName": {
+            "value": "argo-cluster-2023"
+        },
+        "location": {
+            "value": "eastus"
+        },
+        "dnsPrefix": {
+            "value": "argo-cluster-2023-dns"
+        },
+        "kubernetesVersion": {
+            "value": "1.23.8"
+        },
+        "networkPlugin": {
+            "value": "kubenet"
+        },
+        "enableRBAC": {
+            "value": true
+        },
+        "nodeResourceGroup": {
+            "value": "MC_argonaut_argo-cluster-2023_eastus"
+        },
+        "adminGroupObjectIDs": {
+            "value": []
+        },
+        "disableLocalAccounts": {
+            "value": false
+        },
+        "azureRbac": {
+            "value": false
+        },
+        "enablePrivateCluster": {
+            "value": false
+        },
+        "enableHttpApplicationRouting": {
+            "value": false
+        },
+        "enableAzurePolicy": {
+            "value": false
+        },
+        "enableSecretStoreCSIDriver": {
+            "value": false
+        },
+        "vmssNodePool": {
+            "value": true
+        },
+        "acrName": {
+            "value": "argonautContainerRegistry"
+        },
+        "acrResourceGroup": {
+            "value": "argonaut"
+        }
+    }
+}
