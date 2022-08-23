@@ -1,24 +1,46 @@
 # madison-infrastructre
 Home for controlled versions of documents used in the Madison Healthcare sandboxes.
 
-## Original information
+# Provision AKS cluster
 
-Initial resources were created using the following guides:
-- https://docs.microsoft.com/en-us/azure/aks/ingress-static-ip
-- https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm#create-a-service-account
+* K8s RBAC
+* Service Principal per https://github.com/marketplace/actions/azure-login#configure-a-service-principal-with-a-secret
 
-```
-BAD:
-  --version v0.8.0
+# Configure nginx ingress
 
-GOOD
-  --version v0.8.1
-```
+Based on: https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
 
 ```
-az ad sp create-for-rbac --name ArgoSubscriptionsDeploy
-./linux-amd64/helm install nginx-ingress charts/stable/nginx-ingress --namespace subscriptions-ri --set controller.replicaCount=2
-kubectl apply -f  ui.service.yaml
-kubectl apply -f  ui.deployment.yaml
-az ad sp credential reset  --name  ArgoSubscriptionsDeploy
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+```
+
+# Configure Cert Manager
+
+Based on: https://cert-manager.io/docs/installation/
+
+```
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.crds.yaml
+kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.9.1/cert-manager.yaml
+kubectl create --edit -f https://raw.githubusercontent.com/cert-manager/website/master/content/docs/tutorials/acme/example/production-issuer.yaml
+```
+
+In this final `--edit` session:
+
+* change `Issuer` to `ClusterIssuer`
+* change email
+
+# Set up public IP for cluster
+
+Based on: https://docs.microsoft.com/en-us/azure/aks/ingress-tls?tabs=azure-cli
+
+
+
+```
+IP={{external IP from `kubectl  -n ingress-nginx get service`}}
+# Name to associate with public IP address
+DNSNAME=argo-cluster-2022
+
+PUBLICIPID=$(az network public-ip list --query "[?ipAddress!=null]|[?contains(ipAddress, '$IP')].[id]" --output tsv)
+az network public-ip update --ids $PUBLICIPID --dns-name $DNSNAME
+az network public-ip show --ids $PUBLICIPID --query "[dnsSettings.fqdn]" --output tsv
 ```
