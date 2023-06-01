@@ -10,7 +10,18 @@ Parameters for ARM deployment at [`cluster-arm-template/`](./cluster-arm-templat
 Based on: https://kubernetes.github.io/ingress-nginx/deploy/#quick-start
 
 ```
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.3.0/deploy/static/provider/cloud/deploy.yaml
+helm upgrade --install ingress-nginx ingress-nginx \
+  --repo https://kubernetes.github.io/ingress-nginx \
+  --namespace ingress-nginx --create-namespace
+```
+
+Then follow https://serverfault.com/a/1110814 to
+
+```
+kubectl -n ingress-nginx edit service ingress-nginx-controller
+# ensure that the following annotation is present
+# service.beta.kubernetes.io/azure-load-balancer-health-probe-request-path: /healthz
+
 ```
 
 # Configure Cert Manager
