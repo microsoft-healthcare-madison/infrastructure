@@ -10,69 +10,14 @@ spec:
   tls:
   - hosts:
     - subscriptions.argo.run
-    - server.subscriptions.argo.run
-    - client.subscriptions.argo.run
-    - ui.subscriptions.argo.run
-    - hapi4.subscriptions.argo.run
-    - hapi5.subscriptions.argo.run
     secretName: tls-secret
   rules:
-  - host: ui.subscriptions.argo.run
-    http:
-      paths:
-      - backend:
-          service:
-            name: ui
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
   - host: subscriptions.argo.run
     http:
       paths:
       - backend:
           service:
-            name: ui
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
-  - host: server.subscriptions.argo.run
-    http:
-      paths:
-      - backend:
-          service:
-            name: server-proxy
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
-  - host: client.subscriptions.argo.run
-    http:
-      paths:
-      - backend:
-          service:
-            name: client
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
-  - host: hapi4.subscriptions.argo.run
-    http:
-      paths:
-      - backend:
-          service:
-            name: hapi-r4
-            port:
-              number: 80
-        path: /
-        pathType: Prefix
-  - host: hapi5.subscriptions.argo.run
-    http:
-      paths:
-      - backend:
-          service:
-            name: hapi-r5
+            name: fhir-candle
             port:
               number: 80
         path: /
