@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ri-subscriptions
+  namespace: subscriptions-ri
+  labels:
+    app: ri-subscriptions
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ri-subscriptions
+  template:
+    metadata:
+      labels:
+        app: ri-subscriptions
+    spec:
+      containers:
+      - name: fhir-candle
+        image: argonautcontainerregistry.azurecr.io/subscriptions/fhir-candle:latest
+        command: ["dotnet"]
+        args: ["fhir-candle.dll", "--reference-implementation", "subscriptions", "--load-package", "hl7.fhir.uv.subscriptions-backport#1.1.0", "--load-examples", "false", "--protect-source", "true", "-m", "200"]
+        envFrom:
+        - configMapRef:
+            name: special-config
+        env:
+        - name: Listen_Port
+          value: "5826"
+        - name: Public_Url
+          value: "https://subscriptions.argo.run"
+        - name: Zulip_Email
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Zulip_Email
+        - name: Zulip_Key
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: Zulip_Key
+        - name: Zulip_Url
+          value: "https://chat.fhir.org"
+        - name: SMTP_Host
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: SMTP_Host
+        - name: SMTP_Password
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: SMTP_Password
+        - name: SMTP_Port
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: SMTP_Port
+        - name: SMTP_User
+          valueFrom:
+            secretKeyRef:
+              name: argonaut-secrets
+              key: SMTP_User
+        ports:
+        - containerPort: 5826

@@ -4,6 +4,4 @@ metadata:
   name: special-config
   namespace: subscriptions-ri
 data:
-  Listen_Port:  5826
-  Public_Url:  https://subscriptions.argo.run
   INSTRUMENTATION_KEY: db197dcd-10fa-4d2d-947c-4c4d610a4479
