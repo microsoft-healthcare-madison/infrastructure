@@ -19,7 +19,7 @@ spec:
       - name: fhir-candle
         image: argonautcontainerregistry.azurecr.io/subscriptions/fhir-candle:latest
         command: ["dotnet"]
-        args: ["fhir-candle.dll", "--reference-implementation", "smart", "--r4", "open", "--r4", "r4", "--protect-source", "true", "-m", "500"]
+        args: ["fhir-candle.dll", "--reference-implementation", "smart", "--r4", "open", "--r4", "r4", "--smart-required", "r4", "--protect-source", "true", "-m", "500"]
         envFrom:
         - configMapRef:
             name: special-config
