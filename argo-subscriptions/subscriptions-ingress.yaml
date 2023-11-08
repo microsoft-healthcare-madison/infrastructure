@@ -11,6 +11,7 @@ spec:
   - hosts:
     - subscriptions.argo.run
     - pas.ri.argo.run
+    - vitals-server.ri.argo.run
     secretName: tls-secret
   rules:
   - host: subscriptions.argo.run
@@ -29,6 +30,16 @@ spec:
       - backend:
           service:
             name: ri-pas
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  - host: vitals-server.ri.argo.run
+    http:
+      paths:
+      - backend:
+          service:
+            name: ri-vitals-server
             port:
               number: 80
         path: /
