@@ -10,7 +10,7 @@ spec:
   tls:
   - hosts:
     - subscriptions.argo.run
-    - pas.ri.argo.run
+    - cdex.ri.argo.run
     - vitals-server.ri.argo.run
     secretName: tls-secret
   rules:
@@ -24,12 +24,12 @@ spec:
               number: 80
         path: /
         pathType: Prefix
-  - host: pas.ri.argo.run
+  - host: cdex.ri.argo.run
     http:
       paths:
       - backend:
           service:
-            name: ri-pas
+            name: ri-cdex
             port:
               number: 80
         path: /
