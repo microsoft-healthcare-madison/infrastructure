@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ri-cdex
+  name: ri-ecr
   namespace: subscriptions-ri
   labels:
-    app: ri-cdex
+    app: ri-ecr
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ri-cdex
+      app: ri-ecr
   template:
     metadata:
       labels:
-        app: ri-cdex
+        app: ri-ecr
     spec:
       containers:
       - name: fhir-candle
         image: argonautcontainerregistry.azurecr.io/subscriptions/fhir-candle:latest
         command: ["dotnet"]
-        args: ["fhir-candle.dll", "--reference-implementation", "hl7.fhir.us.davinci-cdex", "--ci-package", "HL7/davinci-pas", "--load-package", "hl7.fhir.us.davinci-cdex#2.0.0", "--r4", "provider", "--r4", "payer", "--protect-source", "true", "-m", "400", "--max-subscription-minutes", "1440"]
+        args: ["fhir-candle.dll", "--reference-implementation", "hl7.fhir.us.ecr", "--load-package", "hl7.fhir.us.ecr", "--r4", "r4", "--smart-optional", "r4", "--protect-source", "true", "-m", "1000", "--max-subscription-minutes", "240", "--load-examples", "true"]
         envFrom:
         - configMapRef:
             name: special-config
@@ -27,7 +27,7 @@ spec:
         - name: Listen_Port
           value: "5826"
         - name: Public_Url
-          value: "https://cdex.ri.argo.run"
+          value: "https://ecr.ri.argo.run"
         - name: Zulip_Email
           valueFrom:
             secretKeyRef:
