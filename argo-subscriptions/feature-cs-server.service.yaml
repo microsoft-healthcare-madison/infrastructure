@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: subscriptions-ri
+  name: ri-feature-cs-server
+spec:
+  selector:
+    app: ri-feature-cs-server
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5826
